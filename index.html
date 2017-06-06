@@ -694,10 +694,10 @@
       console.log(e);
       if(this.checked) {
         document.getElementsByClassName("use-default-eula")[0].style.display = "block";
-        document.getElementsByClassName("use-default-eula")[0].checked = true;
+        document.getElementsByName("use_default_eula")[0].checked = true;
       } else {
         document.getElementsByClassName("use-default-eula")[0].style.display = "none";
-        document.getElementsByClassName("use-default-eula")[0].checked = false;
+        document.getElementsByName("use_default_eula")[0].checked = false;
       }
     });
 </script>
