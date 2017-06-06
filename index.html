@@ -293,7 +293,7 @@
                     </div>
                 </div>
 
-<div class="row ">
+<div class="row use-default-eula">
                     <div class="col-md-6">
                         <h2>Использовать стандартный документ с регламентом обработки персональных данных</h2>
                         
@@ -308,40 +308,41 @@
                     </div>
                 </div>
 
-<div class="row">
+<div class="row company-name">
                             <div class="col-md-7">
                                 <h2>Название компании</h2>
                                 <p>Оно будет отображаться в стандартном документе</p>
                             </div>
                             <div class="col-md-5 form-group">
                                 <div class="input-group smartsearch">
-                                    <input id="company_name" name="api_domain" class="form-control" value="">
+                                    <input id="company_name" name="company_name" class="form-control" value="">
                             <span class="input-group-addon">
                                 <span class="icon attention"></span>
                             </span>
                                 </div>
                             </div>
-                        </div><div class="row">
+                        </div>
+                        <div class="row company-address">
                             <div class="col-md-7">
                                 <h2>Юридический адрес</h2>
                                 <p>Он должен быть указан в документе, как и название компании</p>
                             </div>
                             <div class="col-md-5 form-group">
                                 <div class="input-group smartsearch">
-                                    <input id="company_address" name="api_domain" class="form-control" value="">
+                                    <input id="company_address" name="company_address" class="form-control" value="">
                             <span class="input-group-addon">
                                 <span class="icon attention"></span>
                             </span>
                                 </div>
                             </div>
-                        </div><div class="row">
+                        </div><div class="row own-document">
                             <div class="col-md-7">
                                 <h2>Ссылка на ваш регламент обработки персональных данных:</h2>
                                 <p>Если у вас есть собственный документ, используйте его вместо стандартного</p>
                             </div>
                             <div class="col-md-5 form-group">
                                 <div class="input-group smartsearch">
-                                    <input id="own_document" name="api_domain" class="form-control" value="">
+                                    <input id="own_document" name="own_document" class="form-control" value="">
                             <span class="input-group-addon">
                                 <span class="icon attention"></span>
                             </span>
@@ -665,4 +666,15 @@
     <p>Вы были неактивны в течение 15 минут. В целях безопасности, мы завершим сессию, если вы не подтвердите ваше присутствие.</p>
     <br>
     <button class="button green" id="im_here">Я здесь</button>
-</div></div><div class="popup-bg"></div></div></body></html>
+</div></div><div class="popup-bg"></div></div>
+
+
+<style type="text/css">
+.row {
+  margin-left: 10px; 
+}
+
+
+</style>
+
+</body></html>
