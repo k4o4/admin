@@ -692,6 +692,11 @@
   document.getElementsByName("enable_eula")[0].addEventListener("change", 
     function(e){
       console.log(e);
+      if(this.checked) {
+        document.getElementsByClassName("use-default-eula")[0].style.display = "block";
+      } else {
+        document.getElementsByClassName("use-default-eula")[0].style.display = "none";
+      }
     });
 </script>
 
