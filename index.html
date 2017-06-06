@@ -673,8 +673,26 @@
 .row {
   margin-left: 10px; 
 }
-
+.use-default-eula {
+  display: none;
+}
+.company-name  {
+  display: none;
+}
+.company-address  {
+  display: none;
+}
+.own-document  {
+  display: none;
+}
 
 </style>
+
+<script type="text/javascript">
+  document.getElementsByName("enable_eula").addEventListener("change", 
+    function(e){
+      console.log(e);
+    });
+</script>
 
 </body></html>
