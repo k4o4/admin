@@ -694,10 +694,29 @@
       console.log(e);
       if(this.checked) {
         document.getElementsByClassName("use-default-eula")[0].style.display = "block";
+        document.getElementsByClassName("company-name")[0].style.display = "block";
+        document.getElementsByClassName("company-address")[0].style.display = "block";
         document.getElementsByName("use_default_eula")[0].checked = true;
       } else {
         document.getElementsByClassName("use-default-eula")[0].style.display = "none";
+        document.getElementsByClassName("company-name")[0].style.display = "none";
+        document.getElementsByClassName("company-address")[0].style.display = "none";
         document.getElementsByName("use_default_eula")[0].checked = false;
+      }
+    });
+
+
+  document.getElementsByName("use_default_eula")[0].addEventListener("change", 
+    function(e){
+      console.log(e);
+      if(this.checked) {
+        document.getElementsByClassName("company-name")[0].style.display = "block";
+        document.getElementsByClassName("company-address")[0].style.display = "block";
+        document.getElementsByClassName("own-document")[0].style.display = "none";
+      } else {
+        document.getElementsByClassName("company-name")[0].style.display = "none";
+        document.getElementsByClassName("company-address")[0].style.display = "none";
+        document.getElementsByClassName("own-document")[0].style.display = "block";
       }
     });
 </script>
