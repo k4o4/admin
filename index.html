@@ -1,0 +1,676 @@
+
+<html style="overflow: visible; margin-left: 0px;"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Панель управления JivoSite</title>
+    <link rel="shortcut icon" href="/static/images/favicon.ico">
+
+                                    
+    
+    <link href="/static/css/bootstrap.css?tsmark=release%2F2.10.2" media="screen" rel="stylesheet" type="text/css">
+<link href="/static/css/style.css?tsmark=release%2F2.10.2" media="" rel="stylesheet" type="text/css">
+<link href="/static/css/print.css?tsmark=release%2F2.10.2" media="print" rel="stylesheet" type="text/css">
+<link href="/static/css/admin.css?tsmark=release%2F2.10.2" media="screen" rel="stylesheet" type="text/css">
+<link href="/static/libraries/choosen/docsupport/prism.css?tsmark=release%2F2.10.2" media="screen" rel="stylesheet" type="text/css">
+<link href="/static/libraries/choosen/chosen.css?tsmark=release%2F2.10.2" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/plugins/ua/linkid.js"></script><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-PDQG75"></script><script type="text/javascript">
+        var l8n = function (key) {
+            return l8n.get(key);
+        }
+        l8n.keys = {"error.emailInvalid":"\u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u044b\u0439 e-mail","error.number":"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0447\u0438\u0441\u043b\u043e","error.required":"\u042d\u0442\u043e \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u043f\u043e\u043b\u0435"};
+        l8n.get = function (key) {
+            return (this.keys[key]) ? this.keys[key] : key;
+        };
+        </script>
+                                                                <script type="text/javascript" src="/static/js/jquery-1.10.2.min.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/underscore-min.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/backbone-min.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/popup.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/widgets/notifications.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/jquery.multiple-element.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/libraries/choosen/chosen.jquery.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/libraries/choosen/docsupport/prism.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript">
+    //<!--
+        $(document).ready(function() {
+        $(".chosen-select")
+            .chosen({disable_search_threshold: 30, no_results_text: "Совпадений не найдено", search_contains: true}).change(function() {
+                window.location = $(".chosen-select").val();
+        });
+
+        $('.chosen-search > input[type=text]').attr('placeholder', 'Укажите имя сайта или регион');
+
+        var widthSpan = $('.chosen-single').width();
+        if(widthSpan < 238){
+            changeContainerWidth(238, 185);
+        } else {
+            changeContainerWidth(widthSpan, widthSpan - 77);
+        }
+    });
+    //-->
+</script>
+<script type="text/javascript">
+    //<!--
+        $(function() {
+        $('span[data-toggle="tooltip"]').tooltip({container: 'ul.actions>li:last-child'});
+    });
+    //-->
+</script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/jquery.selectDecor.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/jquery.knob.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/jquery.validate.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/jquery.cookie.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/main.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/swfobject.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/libraries/browserNameVer.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/flash-messages.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/moment.js?tsmark=release%2F2.10.2"></script>
+<script type="text/javascript" src="/static/js/moment_langs.js?tsmark=release%2F2.10.2"></script>
+        <script type="text/javascript">
+    var errorCounter = 0;
+
+    window.onerror = function (m, u, l) {
+        if (errorCounter++ < 3) {
+            jQuery.ajax({
+                url: "//err.jivosite.com/admin?cb=?",
+                dataType: 'jsonp',
+                data: {
+                    message: m,
+                    url: window.top.location.href,
+                    lineNumber: l,
+                    fileName: u
+                },
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+        }
+        return false;
+    };
+</script></head>
+<body style="padding-top: 0px;">
+<input type="hidden" value="59364a51236d11.35059154" id="csrf-token">
+<div class="global with-sidebar">
+    <div id="flash-messages" class="fixed"></div>    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-2 zeropadding">
+                    <a id="logo" title="jivosite.com" href="/"></a>
+                </div>
+                <div class="center middle light zeropadding username-cell">
+                    <!-- main menu -->
+                    <ul class="main-menu">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                [SUP] Kirill Malinov                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="navbarDrop1">
+                                <li><a href="/agents/settings?agent_id=265825">Мой аккаунт</a></li>
+                                <li><a href="/auth/logout">Выход</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- \main menu -->
+                </div>
+                <div class="middle pull-right">
+                                            <span><a class="button red" href="/billing">Перейти к оплате</a></span>
+                    
+                </div>
+                <div class="middle pull-right stat-outer">
+                    <div class="stat">
+    <div style="display: inline; width: 50px; height: 50px;"><canvas width="50" height="50"></canvas><input class="indicator" type="text" data-width="50" data-height="50" data-thickness=".2" data-fgcolor="#e83636" data-bgcolor="#555657" data-readonly="true" data-angleoffset="-180" value="20" data-min="0" data-max="40" readonly="readonly"></div>
+    <span>
+        операторов<br>онлайн из 40    </span>
+</div>                </div>
+            </div>
+        </div>
+            <div class="line">
+        <div class="center ">
+            
+                            <div class="callback ">
+                    130 мин, 470 звонков                </div>
+                    </div>
+    </div>
+    </header>
+    <!--end header-->
+
+    <!--start page-->
+    <div id="wrapper">
+        
+
+<div class="nav-bar">
+    <div class="container middle">
+        <ul class="list-inline actions only-home-widgets">
+            <li><a href="/widgets"><span class="icon home pull-left"></span>Каналы</a></li>
+            <li class="small50"><span class="icon arrow-right"></span></li>
+                    </ul>
+
+                    <select data-placeholder="test" class="chosen-select" tabindex="-1" style="display: none;">
+                <option value=""></option>
+                                    <option value="/widgets/notifications/id/508451">Facebook Brazil</option>
+                                    <option value="/widgets/notifications/id/508453">Facebook English</option>
+                                    <option value="/widgets/notifications/id/595390">Facebook Russia</option>
+                                    <option value="/widgets/notifications/id/552345">Facebook Spanish</option>
+                                    <option value="/widgets/notifications/id/426102">JivochatBot</option>
+                                    <option value="/widgets/notifications/id/583805">Viber JivoChat</option>
+                                    <option value="/widgets/notifications/id/577345">Viber Setup - EN</option>
+                                    <option value="/widgets/notifications/id/577341">Viber Setup - RU</option>
+                                    <option value="/widgets/notifications/id/485545">app.jivosite.com</option>
+                                    <option value="/widgets/notifications/id/360971">calls.jivosite.ru</option>
+                                    <option value="/widgets/notifications/id/449480">en-billing.admin</option>
+                                    <option value="/widgets/notifications/id/400026">en.ios.app</option>
+                                    <option value="/widgets/notifications/id/449432">es-billing.admin</option>
+                                    <option value="/widgets/notifications/id/106837">jivochat.com</option>
+                                    <option value="/widgets/notifications/id/106135">jivosite.ru</option>
+                                    <option value="/widgets/notifications/id/448463">vk.com/club44707588</option>
+                                    <option value="/widgets/notifications/id/232913">partner.jivosite.com</option>
+                                    <option value="/widgets/notifications/id/399193">vk.com</option>
+                                    <option value="/widgets/notifications/id/344826">i-sa.jivosite.ru</option>
+                                    <option value="/widgets/notifications/id/304484">jivochat.com.br (Регион по умолчанию)</option>
+                                    <option value="/widgets/notifications/id/612798">jivochat.de</option>
+                                    <option value="/widgets/notifications/id/443162">jivochat.es</option>
+                                    <option value="/widgets/notifications/id/238763">molodost.bz-services-jivosite</option>
+                                    <option value="/widgets/notifications/id/637283">partner.jivochat.com</option>
+                                    <option value="/widgets/notifications/id/634960">partner.jivochat.com.br</option>
+                                    <option value="/widgets/notifications/id/449470">pt-billing.admin</option>
+                                    <option value="/widgets/notifications/id/185182">reg.jivochat.com</option>
+                                    <option value="/widgets/notifications/id/433345">reg.jivochat.com.br</option>
+                                    <option value="/widgets/notifications/id/449471">reg.jivochat.es</option>
+                                    <option value="/widgets/notifications/id/178443">reg.jivosite.ru</option>
+                                    <option value="/widgets/notifications/id/242486">ru-billing.admin</option>
+                                    <option value="/widgets/notifications/id/400025">ru.ios.app</option>
+                                    <option value="/widgets/notifications/id/315848">servicezone.jivosite.com</option>
+                                    <option value="/widgets/notifications/id/407100">vk.jivo.ru</option>
+                                    <option value="/widgets/notifications/id/596560">Сбербанк</option>
+                                    <option value="/widgets/notifications/id/620623">приемная деда мороза (Регион по умолчанию)</option>
+                            </select><div class="chosen-container chosen-container-single" style="width: 0px;" title=""><a class="chosen-single chosen-default" tabindex="-1"><span>test</span><div><b></b></div></a><div class="chosen-drop" style="width: 238px;"><div class="chosen-search" style="width: 246px;"><input type="text" autocomplete="off" tabindex="1" placeholder="Укажите имя сайта или регион" style="width: 185px;"></div><ul class="chosen-results" style="width: 238px;"></ul></div></div>
+
+                    <div>
+                <ul class="list-inline pull-right menu">
+                    <li class="">
+                        <a href="/widgets/stat/id/672306" class="icon chart-top ">Статистика</a>
+                    </li>
+                    <li class="">
+                        <a href="/widgets/log/id/672306" class="icon note-top ">Журнал</a>
+                    </li>
+                                            <li class="active">
+                            <a href="/widgets/installcode/id/672306" class="icon settings-top active">Настройки</a>
+                        </li>
+                    
+                </ul>
+            </div>
+    </div>
+</div>
+
+<form id="target" method="post" action="/widgets/notifications/id/672306" novalidate="novalidate">
+
+    <div class="container with-sidebar">
+        <div class="row widget-settings">
+            <div class="col-sm-2 zeropadding">
+                <div class="sidebar">
+    <ul>
+                  <li>
+              <a href="/widgets/installcode/id/672306">
+                  Установка                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/settings/id/672306">
+                  Опции                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/designer/id/672306">
+                  Дизайн                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/multi-channels/id/672306">
+                  Настройки омниканальности                                </a>
+          </li>
+                  <li class="active">
+              <a href="/widgets/notifications/id/672306">Согласие на обработку персональных данных</a>
+          </li>
+                  <li>
+              <a href="/widgets/payment-settings/id/672306">
+                  Прием платежей в&nbsp;чате                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/actions/id/672306">
+                  Автоматические действия                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/callback/id/672306">
+                  Callback                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/departments/id/672306">
+                  Отделы                                </a>
+          </li>
+                  <li>
+              <a href="/cart-protect/main/id/672306">
+                  Возврат покупателей                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/buttons/id/672306">
+                  Кнопки                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/contacts/id/672306">
+                  Форма контактов                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/blacklist/id/672306">
+                  Черный список                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/regions/id/672306">
+                  Регионы                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/eula/id/672306">
+                  Согласие на обработку персональных данных                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/webhooks/id/672306">
+                  Настройки интеграции для разработчиков                                </a>
+          </li>
+                  <li>
+              <a href="/widgets/services/id/672306">
+                  Другие сервисы                                </a>
+          </li>
+            </ul>
+</div>
+            </div>
+            <div class="col-sm-10 content layer-widget-notifications">
+                <div class="settings-title">
+                    <h1>Включить окно запроса согласия на обработку персональных данных
+</h1>
+                </div>
+<div class="row ">
+                    <div class="col-md-6">
+                        <h2>Включить окно запроса согласия на обработку персональных данных
+</h2>
+                        
+                    </div>
+                    <div class="col-md-4 middle" style="padding-top: 20px;">
+                        <div class="switcher blue pull-left">
+                            <input type="checkbox" name="disable_iframe" value="1">
+                            <span class="btn"></span>
+                            <span class="bg"></span>
+                            <span class="labels"></span>
+                        </div>
+                    </div>
+                </div>
+
+<div class="row ">
+                    <div class="col-md-6">
+                        <h2>Использовать стандартный документ с регламентом обработки персональных данных</h2>
+                        
+                    </div>
+                    <div class="col-md-4 middle" style="padding-top: 20px;">
+                        <div class="switcher blue pull-left">
+                            <input type="checkbox" name="disable_iframe" value="1">
+                            <span class="btn"></span>
+                            <span class="bg"></span>
+                            <span class="labels"></span>
+                        </div>
+                    </div>
+                </div>
+
+<div class="row">
+                            <div class="col-md-7">
+                                <h2>Название компании</h2>
+                                <p>Оно будет отображаться в стандартном документе</p>
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <div class="input-group smartsearch">
+                                    <input id="api_domain" name="api_domain" class="form-control" value="">
+                            <span class="input-group-addon">
+                                <span class="icon attention"></span>
+                            </span>
+                                </div>
+                            </div>
+                        </div><div class="row">
+                            <div class="col-md-7">
+                                <h2>Юридический адрес</h2>
+                                <p>Он должен быть указан в документе, как и название компании</p>
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <div class="input-group smartsearch">
+                                    <input id="api_domain" name="api_domain" class="form-control" value="">
+                            <span class="input-group-addon">
+                                <span class="icon attention"></span>
+                            </span>
+                                </div>
+                            </div>
+                        </div><div class="row">
+                            <div class="col-md-7">
+                                <h2>Юридический адрес</h2>
+                                <p>Он должен быть указан в документе, как и название компании</p>
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <div class="input-group smartsearch">
+                                    <input id="api_domain" name="api_domain" class="form-control" value="">
+                            <span class="input-group-addon">
+                                <span class="icon attention"></span>
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                <div class="row">
+                <p>Если на вашем сайте есть форма, в которой посетители могут указать любые свои контактные данные, то вам необходимо соблюдать <a href="http://www.consultant.ru/document/cons_doc_LAW_61801/"> закон №152-ФЗ “О персональных данных”</a>. Среди прочего, этот закон требует, чтобы при отправке формы с контактными данными пользователи явно выражали согласие на обработку персональных данных и могли узнать цель сбора и порядок обработки этих данных. Чтобы упростить для вас работу по соблюдению закона, мы сделали окно с галочкой-согласием на обработку персональных данных, а также подготовили <a href="#">типовой документ</a>, который описывает общие принципы обработки данных.<br><br>Обратите внимание, для соблюдения закона в полном объеме одного только запроса согласия на обработку персональных данных недостаточно. Советуем вам обратиться к профессиональным юристам (например, <a href="www.logicdoc.ru"> www.logicdoc.ru </a> ) для уменьшения риска претензий от проверяющих. Также напоминаем, что согласно <a href="https://www.jivosite.ru/license">разделу 7 Лицензионного договора </a> разработчик ПО JivoSite (ООО “Живой Сайт”) ни при каких условиях не несет ответственности и не компенсирует убытки Лицензиатов и/или третьих лиц, понесенные вследствии использования ПО, в том числе в связи со штрафами проверяющих органов.</p>                                                                <br>            </div>
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                <div class="row" style="margin-top: 40px">
+                    <div class="col-md-12">
+                        <button type="submit" class="button green" href="#">Сохранить</button>
+                                            </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <input type="hidden" value="59364a51236d11.35059154" name="csrf_key">
+</form>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.isSitePaid = true;
+        $.minEmailCount = 1;
+        $.maxEmailCount = 5;
+    });
+</script>    </div>
+    <!--end page-->
+</div>
+
+<script type="text/javascript">
+    var installedAppFlag,
+        allowAutoClose = false,
+        noticePopup;
+
+    
+    $(function () {
+        function InitPopup() {
+            allowAutoClose = true;
+            installAppPopupOpen();
+            var $popup = $('#install-app-popup');
+            $popup.find('li').removeClass('active');
+            $popup.find('div').removeClass('active in');
+        }
+        $('.app-for-desktop').click(function(e) {
+            InitPopup();
+            var $popup = $('#install-app-popup');
+            $popup.find('.desktop-app').parent('li').addClass('active')
+            $popup.find('#desktop-app').addClass('active in');
+            e.preventDefault();
+        });
+        /*$('.app-for-android').click(function(e) {
+            InitPopup();
+            var $popup = $('#install-app-popup');
+            $popup.find('.mobile-app').parent('li').addClass('active');
+            $popup.find('#mobile-app').addClass('active in');
+            e.preventDefault();
+        });
+        $('.app-for-iphone').click(function(e) {
+            InitPopup();
+            var $popup = $('#install-app-popup');
+            $popup.find('.mobile-app').parent('li').addClass('active');
+            $popup.find('#mobile-app').addClass('active in');
+            e.preventDefault();
+        });
+        $('.app-for-web').click(function(e) {
+            InitPopup();
+            var $popup = $('#install-app-popup');
+            $popup.find('.web-app').parent('li').addClass('active');
+            $popup.find('#web-app').addClass('active in');
+            e.preventDefault();
+        });*/
+    });
+
+    function installAppPopupOpen() {
+        noticePopup = new Popup('#install-app-popup');
+        noticePopup.open();
+        var $popup = $('#install-app-popup');
+        $popup.show();
+        $('#close').click(function() {
+            $.cookie('jivo_app_installed', 'false', {
+                expires: 1,
+                path: '/'
+            });
+        });
+    }
+</script>
+
+<div id="install-app-popup">
+    <div>
+        <div>
+            <div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="no-padding left">Скачайте приложение оператора</h1>
+
+                        <ul class="nav nav-tabs apps-tabs">
+    <li class="active"><a class="desktop-app" href="#desktop-app" data-toggle="tab">Для Windows и Mac</a></li>
+    <li><a class="mobile-app" href="#mobile-app" data-toggle="tab">Для смартфона</a></li>
+    <li><a class="web-app" href="#web-app" data-toggle="tab">Веб-версия</a></li>
+</ul>
+
+<div class="tab-content apps-tabs-content">
+    <div class="tab-pane fade in active" id="desktop-app">
+        <div class="col-md-7 autoreg">
+            <p>Это приложение позволит Вам и Вашим операторам общаться с посетителями сайта. Есть версия для Windows и Mac</p>
+            <script type="text/javascript">
+    browserNameVer = function() {
+        var N = navigator.appName, ua = navigator.userAgent.toLowerCase(), p = navigator.platform.toLowerCase(), tem;
+        var M = ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
+        var mac = p ? /mac/.test(p) : /mac/.test(ua);
+        if(M && (tem = ua.match(/version\/([\.\d]+)/i))!= null) M[2] = tem[1];
+        M = M? [M[1], M[2]]: [N, navigator.appVersion,'-?'];
+        M.mac = mac;
+        return M;
+    }();
+    $(function() {
+        if (browserNameVer.mac) {
+            $('.app-for-win').removeClass('button blue');
+            $('#mac').insertBefore($('#win-exe'));
+        } else {
+            $('.app-for-mac').removeClass('button blue');
+        }
+    });
+</script>
+<div id="badgeContainer">
+    <table class="center full-width">
+                <tbody><tr id="win-exe">
+            <td><a href="https://s3-eu-west-1.amazonaws.com/jivo-userdata/stable/jivosite.exe" class="button blue pull-left badge-node app-for-win">Скачать для Windows</a></td>
+        </tr>
+        <tr id="mac">
+            <td><a href="https://s3-eu-west-1.amazonaws.com/jivo-userdata/stable/jivosite.dmg" class="pull-left badge-node app-for-mac">Скачать для Mac</a></td>
+        </tr>
+        <tr id="win-msi">
+            <td>Хотите установить приложение на много компьютеров через доменную политику? Скачайте <a href="https://s3-eu-west-1.amazonaws.com/jivo-userdata/stable/jivosite.msi" class="badge-node">инсталлятор MSI</a>.</td>
+        </tr>
+    </tbody></table>
+</div>        </div>
+        <div class="col-md-5 right zeropadding autoreg">
+            <img src="/static/images/application-small-ru.png" alt="desktop app">
+        </div>
+    </div>
+    <div class="tab-pane fade" id="mobile-app">
+        <p class="stipulation">С мобильным приложением оператора вы никогда не пропустите обращения от важного клиента. Отвечайте на запросы клиентов, где бы вы ни находились!</p>
+        <div class="separator"></div>
+        <a class="app-store" target="_blank" href="https://itunes.apple.com/ru/app/jivosite/id898216971"></a>
+        <a class="google-play" target="_blank" href="https://play.google.com/store/apps/details?id=com.jivosite.mobile&amp;hl=ru"></a><br>
+    </div>
+    <div class="tab-pane fade" id="web-app">
+        <div class="col-md-7 autoreg">
+            <p><a href="https://app.jivosite.com">Веб-приложение оператора</a> не требует установки и работает во всех современных браузерах</p>
+
+            <a class="web-app-btn" href="https://app.jivosite.com/?s#?email=malinov@jivosite.com&amp;lang=ru&amp;access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJqaXZvc2l0ZSIsImp0aSI6IjM0NzI5MTcyMDA4MDI0MTgyMzA1OTM2NGE1MTIwNTZlNS4zNDkzMDMxMSIsImF1ZCI6WyJhcGkiLCJqaXZvYXBwIiwiY2hhdHNlcnZlciJdLCJpYXQiOjE0OTY3MzAxOTMsImV4cCI6MTQ5NjczMTk5Mywic2NvcGVfbGlzdCI6WyJhdXRoIl0sImRhdGEiOnsidXNlcl9pZCI6MjY1ODI1LCJ1c2VyX3JvbGUiOiJhZ2VudF9zdSJ9LCJ1c2VyX2lkIjoyNjU4MjUsInVzZXJfcm9sZSI6ImFnZW50X3N1In0.oAlVr8EG4fdwFmPw4OSBrCJBe0RrC_Bx3R_61xnKGHUgZKFkK0ASjwo4SPH7JHpDJ-6vkE5scsRIi5qNFHlo5zginrAQuW5Nta7O5Fq2QU70M71j56l_7n4H6EbYlYlv-R5btf-CjkZVROtlQzR-o2NoUzbYoSY-9NQ8no8uPgbOQNxaBfZHbyA0r-CW_JqEROXbXKK2EwL17WUMBfU06cKC85wwNZrir3luptK12Kg4OMWlRfdrYM8jwypqjJJ1rM-xgsK_1Ti-ACQYpWOPoGnx60WRrkRUsyJ8y3ZSKKQmU0f6VIl0ENjFkkrh6WcjAVsurSGE765oGVt07TkQhg" target="_blank">запустить веб-приложение</a>
+
+        </div>
+        <div class="col-md-5 right zeropadding autoreg">
+            <img src="/static/images/app_web_ru.png" alt="Web app">
+        </div>
+    </div>
+</div>                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--start footer-->
+<footer>
+    <div class="download-app">
+        <div class="container">
+            <p>Скачайте приложение оператора:</p>
+            <ul>
+                <li class="app-for-desktop">Для Windows и Mac</li>
+                <li class="app-for-android"><a href="https://play.google.com/store/apps/details?id=com.jivosite.mobile&amp;hl=ru" target="_blank">Android</a></li>
+                <li class="app-for-iphone"><a href="https://itunes.apple.com/ru/app/jivosite/id898216971" target="_blank">iPhone</a></li>
+                <li class="app-for-web"><a href="https://app.jivosite.com/?s#?email=malinov@jivosite.com&amp;lang=ru&amp;access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJqaXZvc2l0ZSIsImp0aSI6IjM0NzI5MTcyMDA4MDI0MTgyMzA1OTM2NGE1MTIwNTZlNS4zNDkzMDMxMSIsImF1ZCI6WyJhcGkiLCJqaXZvYXBwIiwiY2hhdHNlcnZlciJdLCJpYXQiOjE0OTY3MzAxOTMsImV4cCI6MTQ5NjczMTk5Mywic2NvcGVfbGlzdCI6WyJhdXRoIl0sImRhdGEiOnsidXNlcl9pZCI6MjY1ODI1LCJ1c2VyX3JvbGUiOiJhZ2VudF9zdSJ9LCJ1c2VyX2lkIjoyNjU4MjUsInVzZXJfcm9sZSI6ImFnZW50X3N1In0.oAlVr8EG4fdwFmPw4OSBrCJBe0RrC_Bx3R_61xnKGHUgZKFkK0ASjwo4SPH7JHpDJ-6vkE5scsRIi5qNFHlo5zginrAQuW5Nta7O5Fq2QU70M71j56l_7n4H6EbYlYlv-R5btf-CjkZVROtlQzR-o2NoUzbYoSY-9NQ8no8uPgbOQNxaBfZHbyA0r-CW_JqEROXbXKK2EwL17WUMBfU06cKC85wwNZrir3luptK12Kg4OMWlRfdrYM8jwypqjJJ1rM-xgsK_1Ti-ACQYpWOPoGnx60WRrkRUsyJ8y3ZSKKQmU0f6VIl0ENjFkkrh6WcjAVsurSGE765oGVt07TkQhg" target="_blank">Веб-версия</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <a id="logo" title="jivosite.com" href="/"></a>
+                        <ul class="footer-menu">
+                <li><a target="_blank" href="/?sso_redirect=1">Техподдержка</a></li>
+                <li><a target="_blank" href="http://jivosite.ru/license">Лицензионный договор</a></li>
+                                    <li><a target="_blank" href="http://jivosite.ru/blog">Блог</a></li>
+                                <!--<li><a href="https://app.jivosite.com/?s#?email=malinov@jivosite.com&lang=ru&access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJqaXZvc2l0ZSIsImp0aSI6IjM0NzI5MTcyMDA4MDI0MTgyMzA1OTM2NGE1MTIwNTZlNS4zNDkzMDMxMSIsImF1ZCI6WyJhcGkiLCJqaXZvYXBwIiwiY2hhdHNlcnZlciJdLCJpYXQiOjE0OTY3MzAxOTMsImV4cCI6MTQ5NjczMTk5Mywic2NvcGVfbGlzdCI6WyJhdXRoIl0sImRhdGEiOnsidXNlcl9pZCI6MjY1ODI1LCJ1c2VyX3JvbGUiOiJhZ2VudF9zdSJ9LCJ1c2VyX2lkIjoyNjU4MjUsInVzZXJfcm9sZSI6ImFnZW50X3N1In0.oAlVr8EG4fdwFmPw4OSBrCJBe0RrC_Bx3R_61xnKGHUgZKFkK0ASjwo4SPH7JHpDJ-6vkE5scsRIi5qNFHlo5zginrAQuW5Nta7O5Fq2QU70M71j56l_7n4H6EbYlYlv-R5btf-CjkZVROtlQzR-o2NoUzbYoSY-9NQ8no8uPgbOQNxaBfZHbyA0r-CW_JqEROXbXKK2EwL17WUMBfU06cKC85wwNZrir3luptK12Kg4OMWlRfdrYM8jwypqjJJ1rM-xgsK_1Ti-ACQYpWOPoGnx60WRrkRUsyJ8y3ZSKKQmU0f6VIl0ENjFkkrh6WcjAVsurSGE765oGVt07TkQhg" target="_blank">Web-приложение оператора (beta)</a></li>-->
+            </ul>
+
+            <p class="copr">ООО «Живой Сайт» © 2011-2017. Все права защищены</p>
+        </div>
+    </div>
+</footer>
+<!--end footer-->
+    <!-- Google Tag Manager -->
+<noscript>&lt;iframe src="//www.googletagmanager.com/ns.html?id=GTM-PDQG75"
+                  height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;</noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PDQG75');</script>
+<!-- End Google Tag Manager -->
+
+
+
+
+<script type="text/javascript">
+    const TICK = 1000,
+        ALERT_INTERVAL = 8* 60 * TICK,
+        LOGOUT_INTERVAL = 15 * 60 * TICK;
+
+    var alert_timeout = 0,
+        logout_timeout = 0,
+        logout_interval = 0,
+        logout_counter = LOGOUT_INTERVAL,
+        logout_popup;
+
+    /**
+     * Инициализация таймеров
+     */
+    function initLogoutTimer() {
+        clearTimeout(alert_timeout);
+        clearTimeout(logout_timeout);
+        clearInterval(logout_interval);
+        alert_timeout = setTimeout(showAlert, ALERT_INTERVAL);
+    }
+
+    /**
+     * Отображение предупреждения
+     */
+    function showAlert() {
+        logout_timeout = setTimeout(doLogout, LOGOUT_INTERVAL);
+        logout_interval = setInterval(updateTimer, TICK);
+        logout_counter = LOGOUT_INTERVAL;
+        updateTimer() && openPopup();
+    }
+
+    /**
+     * Открытие попапа
+     */
+    function openPopup() {
+        if (!logout_popup) {
+            logout_popup = new Popup('#logout-alert');
+            $('#im_here').click(logout_popup.close.bind(logout_popup));
+            logout_popup.setCloseHandler(pingServer);
+            logout_popup.el().addClass('popup-logout').css('z-index', 999999999);
+        }
+
+        logout_popup.open();
+    }
+
+    /**
+     * Обновление таймера
+     */
+    function updateTimer() {
+        $('#logout_timer').text(moment(logout_counter).format('mm:ss'));
+        return logout_counter -= TICK;
+    }
+
+    /**
+     * Выход
+     */
+    function doLogout() {
+        window.location.href = '/auth/logout';
+    }
+
+    /**
+     * Пинг
+     */
+    function pingServer() {
+        $.ajax('/ajax/check-site');
+    }
+
+    $(function () {
+        $(document).bind('ajaxComplete', initLogoutTimer);
+        initLogoutTimer();
+    })
+</script><script type="text/javascript">
+    $(function () {
+        window.l8n = window.l8n || function () {
+                console.error('Localization is undefined');
+            };
+    });
+</script>
+
+<div id="popup"><div><a id="close"></a><div class="layer-widget-notifications email-popup" style="display: block;">
+
+    <div class="row">
+        <h2>Данная функция доступна в профессиональной версии</h2>
+    </div>
+
+    <div class="row">
+        <p>
+            Эта и многие другие полезные функции доступны в профессиональной версии. Подключив ее, вы получите больше обращений с вашего сайта с активными приглашениями в диалог и работа с клиентами станет удобнее.        </p>
+    </div>
+
+    <div class="row">
+        <a href="/billing" class="button green" name="button-left">Купить лицензию</a>
+        <a href="#" class="button white" name="button-right">Не сейчас</a>
+    </div>
+
+</div></div><div class="popup-bg"></div></div><div id="popup" class="popup-logout" style="z-index: 999999999; display: none; padding-top: 0px;"><div><a id="close"></a><div id="logout-alert" style="display: block;">
+    <h1><span>Сессия закончится через&nbsp;</span><span id="logout_timer">14:58</span></h1>
+    <p>Вы были неактивны в течение 15 минут. В целях безопасности, мы завершим сессию, если вы не подтвердите ваше присутствие.</p>
+    <br>
+    <button class="button green" id="im_here">Я здесь</button>
+</div></div><div class="popup-bg"></div></div></body></html>
